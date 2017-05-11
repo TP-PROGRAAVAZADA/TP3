@@ -152,4 +152,14 @@ public class Polinomio {
 		return suma;
 	}
 	
+	@Override
+	public String toString() {
+		StringBuilder string = new StringBuilder();
+		string.append("y=");
+		for(int i =0;i<grado;i++){
+			string.append(coeficientes[i]+"x^"+(grado-i)+"+");
+		}
+		string.append(coeficientes[grado]);
+		return string.toString();
+	}
 }
