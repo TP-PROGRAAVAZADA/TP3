@@ -8,6 +8,7 @@ public class Polinomio {
 	private double [ ][ ] resultados;//resultados para el punto 3 [base][exp]
 	public static final int FIL = 100;
 	public static final int COL = 100;
+	private double [] datos;//para la otra forma de ProgDinamica
 	/**
 	 * La posicion 0 del arreglo de coeficientes contiene el 
 	 * coeficiente de grado n y la
@@ -134,6 +135,21 @@ public class Polinomio {
 				resultados[i][j] = 0;//llena por columnas
 			
 		}
+	}
+	
+	public double ProgDinamica2(double x){
+		double suma =0;
+		datos = new double [grado+1];
+		datos [grado] = 1;
+		for(int i=grado;i>=0;i--){
+			if(datos[i]==0&&x!=0){
+				suma+=coeficientes[i]*x*datos[i+1];
+				datos[i]=x*(datos[i+1]);
+			}
+			else
+				suma+=coeficientes[i]*datos[i];
+		}
+		return suma;
 	}
 	
 }
