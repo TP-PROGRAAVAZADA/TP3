@@ -40,15 +40,40 @@ public class Polinomio {
 		res += coeficientes[grado];
 		return res;
 	}
-	
-	public double evaluarRecursiva (double x ){
-		
-		return res;
-	} 
-	
-	double evaluarRecursivaPar (double x ){
-		return res;
-	} 
+	// Evaluacion de la recursividad
+	public double evaluarRecursiva(double x){
+		double suma = 0;
+		 for(int i=0;i<=grado;i++){
+			suma+=potencia(x,grado-i)*coeficientes[i];
+		}
+		return suma;
+	}
+	//Metodo recursivo para el calculo de la potencia sin considerar la paridad del exponente
+	public double potencia(double x, int n){
+		if(n>0){
+			return x*potencia(x,n-1);
+		}else
+			return 1;
+	}
+	// Evaluacion de la recursividad Par
+	public double evaluarRecursivaPar(double x){
+		double suma = 0;
+		 for(int i=0;i<=grado;i++){
+			suma+=potencia2(x,grado-i)*coeficientes[i];
+		}
+		return suma;
+	}
+	//Metodo recursivo para el calculo de la potencia considerando la paridad del exponente
+	public double potencia2(double x, int n){
+		if(n>0){
+			if(n%2==0){
+				return potencia(x*x,n/2);
+			}
+			else
+				return x*potencia(x,n-1);
+		}
+	return 1;
+	}
 	//Metodo para evaluar el polinomio en un punto con prog dinamica
 	public double evaluarProgDinamica (int x ){
 		double res=0;
@@ -79,7 +104,7 @@ public class Polinomio {
 	}
 	//Lo usa evalua con mulSuc
 	//calcula las potencias con multiplicaciones sucesivas
-	public double potenciaMultSuc(double base , int exponente){
+	public static double potenciaMultSuc(double base , int exponente){
 		
 		double res = base ;
 		for(int i = 0; i < exponente -1; i++){
