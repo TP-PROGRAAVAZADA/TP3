@@ -4,7 +4,6 @@ public class Polinomio {
 	
 	private int grado ;
 	private double [ ] coeficientes;
-	private double res = 0;
 	private double [ ][ ] resultados;//resultados para el punto 3 [base][exp]
 	public static final int FIL = 100;
 	public static final int COL = 100;
@@ -87,16 +86,22 @@ public class Polinomio {
 		return res;
 		
 	}
-	
+	//Metodo que evalua en un polinomio usando MathPow
 	public double evaluarPow (double x ){
-		return res;
-	}
-	public double evaluarHorner ( double x ){
-		double b= coeficientes[0];
-		for(int k=1;k<=grado;k++){
-			b=coeficientes[k]+x*b;
+		double suma = 0;
+		 for(int i=0;i<=grado;i++){
+			suma+=Math.pow(x, grado-i)*coeficientes[i];
 		}
-		return b;
+		return suma;
+	}
+	
+	//Metodo que evalua el polinomio mediante el metodo Horner de analisis matematico
+	public double evaluarHorner ( double x ){
+		double suma= coeficientes[0];
+		for(int i=1;i<=grado;i++){
+			suma=coeficientes[i]+x*suma;
+		}
+		return suma;
 	}
    
 	/// No se si servira, para validar la cantidad de coeficientes segun el grado
