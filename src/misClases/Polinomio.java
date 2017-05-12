@@ -86,6 +86,23 @@ public class Polinomio {
 		return res;
 		
 	}
+		//Placeholder para evaluarMejorada
+		public double progDinamicaRecursiva (double x){
+			double suma = 0;
+			 for(int i=0;i<=grado;i++){
+				suma+=potprogdinamica(x,grado-i)*coeficientes[i];
+			}
+			return suma;
+		}
+		
+		public double potprogdinamica(double x, int n){
+			if(coeficientes[n]==0&&x!=0)
+				return coeficientes[n];
+			if(n>0){
+				return x*potencia(x,n-1);
+			}else
+				return 1;
+		}
 	//Metodo que evalua en un polinomio usando MathPow
 	public double evaluarPow (double x ){
 		double suma = 0;
