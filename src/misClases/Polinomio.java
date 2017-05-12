@@ -17,9 +17,10 @@ public class Polinomio {
 	
 	//Constructor
 	public Polinomio(int grado, double[] coeficientes){
-		
 		this.grado = grado;
 		this.coeficientes = coeficientes;
+		datos = new double [grado+1];//Vector de datos para la prog Dinamica
+		datos [grado] = 1;//Inicializando potencia de x^0
 		resultados = new double[FIL][COL];//para la prog Dinamica
 	}
 	
@@ -87,15 +88,15 @@ public class Polinomio {
 		
 	}
 	
-	public double evaluarMejorada (double x ){
-		return res;
-	}
-	
 	public double evaluarPow (double x ){
 		return res;
 	}
 	public double evaluarHorner ( double x ){
-		return res;
+		double b= coeficientes[0];
+		for(int k=1;k<=grado;k++){
+			b=coeficientes[k]+x*b;
+		}
+		return b;
 	}
    
 	/// No se si servira, para validar la cantidad de coeficientes segun el grado
@@ -136,11 +137,9 @@ public class Polinomio {
 			
 		}
 	}
-	
-	public double ProgDinamica2(double x){
+	//Metodo de programacion dinamica guardando potencias ya calculadas en un vector
+	public double progDinamica2(double x){
 		double suma =0;
-		datos = new double [grado+1];
-		datos [grado] = 1;
 		for(int i=grado;i>=0;i--){
 			if(datos[i]==0&&x!=0){
 				suma+=coeficientes[i]*x*datos[i+1];
